@@ -181,8 +181,9 @@ npm run preview
 ```
 
 The production output is written to `dist/`. `npm run build` first enforces the catalogue
-verification invariants, then runs strict TypeScript and the Vite build. It also copies
-`index.html` to `404.html` so static hosts can fall back to the SPA entry point.
+verification invariants, then runs strict TypeScript and the Vite build. It also emits
+static entry files for every application route and copies `index.html` to `404.html` as
+the fallback for unknown SPA routes.
 
 ## Deployment
 
@@ -213,8 +214,8 @@ VITE_GITHUB_URL=https://github.com/YuanyuanMa03/SciData \
 npm run build
 ```
 
-`BrowserRouter` reads Vite's base path, and the generated `404.html` preserves direct
-links to dataset and explore routes.
+`BrowserRouter` reads Vite's base path. Generated route entry files let known routes load
+directly with HTTP 200, while `404.html` remains the fallback for unknown routes.
 
 ## Roadmap
 
